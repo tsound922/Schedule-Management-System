@@ -1,0 +1,28 @@
+{
+  "name": "means",
+  "version": "1.0.0",
+  "description": "mean stack application",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "MEAN",
+    "stack"
+  ],
+  "author": "Zhenyu",
+  "license": "ISC",
+  "dependencies": {
+    "angularjs": "0.0.1",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.17.2",
+    "events.js": "^0.1.4",
+    "express": "^4.15.4",
+    "expressjs": "^1.0.1",
+    "mongodb": "^2.2.31",
+    "mongodb-core": "^2.1.15",
+    "mongoose": "^4.11.6",
+    "morgan": "^1.8.2",
+    "nodejs": "0.0.0"
+  }
+}
