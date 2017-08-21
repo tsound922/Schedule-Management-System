@@ -1,9 +1,9 @@
+//Server and database configuration
 var express = require('express');
 var app = express();
 var port = process.env.PORT || 8000;
 var morgan = require('morgan');
 var mongoose = require('mongoose');
-//var User =  require('./app/models/user');
 var bodyParser = require('body-parser');
 var router = express.Router();
 var appRoutes = require('./app/routes/api')(router);
