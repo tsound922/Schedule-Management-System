@@ -1,13 +1,9 @@
-//userServices is the name of the augular module you made, '[]' means dependencies
+//Sending data to the users api
 angular.module('userServices', [])
-	//The name of factory is User
-	.factory('User',function ($http) {
-		userFactory  = {};
-
-
-		userFactory.create = function (regData) {
-			return $http.post('/api/users', regData);
-		}
-		
-		return userFactory;
-	});
+.factory('User',function ($http) {
+	userFactory  = {};
+	userFactory.create = function (regData) {
+		return $http.post('/api/users', regData);
+	}
+	return userFactory;
+});

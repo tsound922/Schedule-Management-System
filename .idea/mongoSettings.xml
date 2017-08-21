@@ -4,7 +4,6 @@
     <option name="serverConfigurations">
       <list>
         <ServerConfiguration>
-          <option name="label" value="localhost" />
           <option name="serverUrls">
             <list>
               <option value="localhost:27017" />
@@ -16,6 +15,6 @@
         </ServerConfiguration>
       </list>
     </option>
-    <option name="shellPath" value="F:\MongoDB\Server\3.4\bin\mongo.exe" />
+    <option name="shellPath" value="C:\Program Files\MongoDB\Server\3.4\bin\mongo.exe" />
   </component>
 </project>
