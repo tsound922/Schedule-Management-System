@@ -6,11 +6,7 @@ angular.module('userControllers', ['userServices'])
 		this.regUser = function (regData) {
 			app.loading = true;
 			app.errorMsg = false;
-			//console.log('form submitted');
-			//console.log(this.regData);
 			User.create(app.regData).then(function (data) {
-					//console.log(data.data.success);
-					//console.log(data.data.message);
 					if (data.data.success) {
 						app.loading = false;
 						//Create successful message
