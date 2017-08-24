@@ -22,8 +22,10 @@
 	<script src = "app/routes.js"></script>
 	<!--Angular controllers -->
 	<script src = "app/controllers/userCtrl.js"></script>
+	<script src = "app/controllers/loginCtrl.js"></script>
 	<!--Angular Services -->
 	<script src = "app/services/userServices.js"></script>
+	<script src = "app/services/authServices.js"></script>
 
 
 
@@ -32,7 +34,7 @@
 
 </head>
 
-<body ng-app="userApp">
+<body ng-app="userApp" ng-controller="loginCtrl as main">
 <!-- Fixed navbar -->
 <nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container">
@@ -48,7 +50,7 @@
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="/">Home</a></li>
-				<li><a href="/about">About</a></li>
+				<li><a href="/login">Login</a></li>
 				<li><a href="/register">Register</a></li>
 				<li><a href="/movie">Movie</a></li>
 				<li class="dropdown">
