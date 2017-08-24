@@ -16,6 +16,9 @@ angular.module('appRoutes', ['ngRoute'])
 				templateUrl: 'app/views/pages/users/movie.html',
 
 			})
+			.when('/login', {
+				templateUrl: 'app/views/pages/users/login.html'
+			})
 			.otherwise({redirectTo: '/'});
 		$locationProvider.html5Mode({
 			enabled: true,
