@@ -30,11 +30,11 @@ module.exports = function(router){
 			if (err) throw err;
 
 			if(!user){
-				res.json({success: false, message:'Could not authenticate user'});
+				res.json({success: false, message:'Login failed, please check your input'});
 			}else{
 				var validatePassword = user.comparePassword(req.body.password);
 				if(!validatePassword){
-					res.json({success: false, message: 'Could not match the password'})
+					res.json({success: false, message: 'Please input your password'})
 				}else{
 					res.json({success:true, message:"Login Successful!"});
 				}
