@@ -1,4 +1,5 @@
 var User =  require('../models/user');
+var jwt = require('jsonwebtoken');
 module.exports = function(router){
 //localhost:8000/api/users
 //User register
@@ -43,3 +44,8 @@ module.exports = function(router){
 	});
 	return router;
 }
+
+/*jwt.sign({
+	data: ''
+}, 'secret', {});
+*/
