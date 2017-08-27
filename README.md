@@ -1,7 +1,7 @@
-# Code Rule v0.1
+# Code Rules v0.1
 All the developers must follow the rules when writing their codes.
 
-Code rules version 0.5
+Code rules version 0.1
 
 - Variable name must be meaningful and easy to understand.
 - No under scores for function declaration.
