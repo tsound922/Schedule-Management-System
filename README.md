@@ -1,55 +1,55 @@
 # Code Rules v0.2
-All the developers must follow the rules when writing their codes.
+All developers in the team must follow the rules when writing their codes.
 
 Code rules version 0.2
 
-- Variable name must be meaningful and easy to understand.
+- Variable names must be in camel-case, meaningful and easy to understand. No under scores.
 - No under scores for function declaration.
 - No dashes for variable declaration.
-- Every functions must have a detailed explanation in comments.
-- The format style of a function must follow like this:
-Function a (){
-//function code
-}
-- No abbreviation for file name
-- The files must put into the reasonable folders separately. For example:
-registerController.js and authenticateController.js must put into the folder named controller
-
-- Testing cases (including the hard code example) must be embed into “/* */”
-- Each line must be under 120 characters except the very lone regular expression.
-- Line-wrapping must be happened at the higher syntactic level. Eg:
-if (user.isAuthenticated()
-    && user.isInRole('admin')
-    && user.hasAuthority('add-admin')
-    || user.hasAuthority('delete-admin')
-) {
-    // Code
+- Every function must have a detailed explanation in comments.
+- The format style of a function must follow:<br>
+Function(){<br>
+&emsp;&emsp;//function code<br>
 }
 
-- Line wrapper must be execute if variable declaration, function use, create object, for loop meet “ , ” and “ ; ”
-Example:
-var obj = {
-    a: 1,
-    b: 2,
-    c: 3
-};
+- No abbreviation for file names.
+- The files should be sorted in folders according to their purposes. For example:<br>
+registerController.js and authenticateController.js must put into the folder named controller.
 
-foo(
-    aVeryVeryLongArgument,
-    anotherVeryLongArgument,
-    callback
+- Testing cases (including hard code examples) must be embbed into “/* */”.
+- Each line must be under 120 characters except very lone regular expression.
+- Line-wrapping must happen at the higher syntactic level. Eg:<br>
+if (user.isAuthenticated()<br>
+&emsp;&emsp;&& user.isInRole('admin')<br>
+&emsp;&emsp;&& user.hasAuthority('add-admin')<br>
+&emsp;&emsp;|| user.hasAuthority('delete-admin')<br>
+) {<br>
+&emsp;&emsp;// Code<br>
+}
+
+- Line wrapping must be executed when declaring variables, using functions and creating objects, for loop meet “ , ” and “ ; ”
+Example:<br>
+var obj = {<br>
+&emsp;&emsp;a: 1,<br>
+&emsp;&emsp;b: 2,<br>
+&emsp;&emsp;c: 3<br>
+};<br>
+foo(<br>
+&emsp;&emsp;aVeryVeryLongArgument,<br>
+&emsp;&emsp;anotherVeryLongArgument,<br>
+&emsp;&emsp;callback<br>
 );
 
 - No white space allowed before “ , ” and “ ; ”
 - White space should be execute before a code block ( in other words: meet “ { ”)
-Example:
+Example:<br>
 if (condition) {
 }
 
 - No code block omit in “ if / else / for / do / while ”
-For example: 
-“if (condition) callFunc();” 
-is not allowed and must be write like
-if (condition) {
-    callFunc();
+For example: <br>
+“if (condition) callFunc();” <br>
+is not allowed and must be write like:<br>
+if (condition) {<br>
+&emsp;&emsp;callFunc();<br>
 }
