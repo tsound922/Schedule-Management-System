@@ -7,5 +7,9 @@ angular.module('authServices', [])
 			return $http.post('/api/authenticate', loginData);
 		}
 		return authFactory;
-	});
+	})
 
+.factory('AuthToken', function () {
+	var authTokenFactory = {};
+	return authTokenFactory;
+});
