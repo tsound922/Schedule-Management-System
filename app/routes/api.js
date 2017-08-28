@@ -1,5 +1,6 @@
 var User =  require('../models/user');
 var jwt = require('jsonwebtoken');
+var security = 'security';
 module.exports = function(router){
 //localhost:8000/api/users
 //User register
@@ -37,15 +38,11 @@ module.exports = function(router){
 				if(!validatePassword){
 					res.json({success: false, message: 'Please input your password'})
 				}else{
-					res.json({success:true, message:"Login Successful!"});
+					var token = jwt.sign({username: user.username, email:user.email}, security, {expiresIn: '12h'});
+					res.json({success:true, message:"Login Successful!", token: token});
 				}
 			}
 		});
 	});
 	return router;
 }
-
-/*jwt.sign({
-	data: ''
-}, 'secret', {});
-*/
