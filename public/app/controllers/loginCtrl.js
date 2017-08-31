@@ -4,6 +4,12 @@ angular.module('loginController', ['authServices'])
 .controller('loginCtrl', function (Auth, $timeout, $location) {
 	var app = this;
 
+	if(Auth.loggedIn()){
+		console.log('Success: login already');
+	}else {
+		console.log('Falied: login failed');
+	}
+
 	this.doLogin = function (loginData) {
 		app.loading = true;
 		app.errorMsg = false;
