@@ -3,7 +3,7 @@ angular.module('loginController', ['authServices'])
 
 .controller('loginCtrl', function (Auth, $timeout, $location,$rootScope) {
 	var app = this;
-
+	app.loaded = false;
 	$rootScope.$on('$routeChangeStart',function () {
         if(Auth.loggedIn()){
             console.log('Success: login already');
@@ -11,11 +11,13 @@ angular.module('loginController', ['authServices'])
             Auth.getUser().then(function (data) {
                 console.log(data.data.username);
                 app.username = data.data.username;
+                app.loaded = true;
             })
         }else {
             console.log('Falied: login failed');
             app.username = '';
             app.loggedIn = false;
+            app.loaded = true;
         }
 	});
 
