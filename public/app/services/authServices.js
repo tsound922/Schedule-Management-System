@@ -21,9 +21,10 @@ angular.module('authServices', [])
 				return false;
 			}
 		};
+		//Auth.logout();
 		authFactory.logout = function () {
 			AuthToken.setAuthToken();
-		}
+		};
 
 		return authFactory;
 	})
