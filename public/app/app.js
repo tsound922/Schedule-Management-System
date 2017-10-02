@@ -2,5 +2,8 @@
 /*---------------------
 * This fill will map all the controller and modules using in the system
 * ---------------------*/
-angular.module('userApp',['appRoutes','userControllers','userServices','ngAnimate','loginController','authServices']);
+angular.module('userApp',['appRoutes','userControllers','userServices','ngAnimate','loginController','authServices'])
 
+.config(function ($httpProvider) {
+    $httpProvider.interceptors.push('AuthIntercept');
+});

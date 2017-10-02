@@ -44,6 +44,29 @@ module.exports = function(router){
 			}
 		});
 	});
+	
+	router.use(function (req,res,next) {
+		var token = req.body.token || req.body.query || req.headers['x-access-token'];
+
+		if(token){
+			//verify the token
+			jwt.verify(token, security, function (err,decoded) {
+				if(err){
+                    res.json({success: false, message:'Invalid Token!'});
+				} else{
+					req.decoded = decoded;
+					next();
+				}
+            });
+		}else{
+			res.json({success: false,message: 'No token provided'});
+		}
+    });
+	
+	router.post('/me', function (req,res) {
+		res.send(req.decoded);
+    });
+	
 	return router;
 }
 

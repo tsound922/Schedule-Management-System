@@ -1,14 +1,21 @@
 // put the dependency in []
 angular.module('loginController', ['authServices'])
 
-.controller('loginCtrl', function (Auth, $timeout, $location) {
+.controller('loginCtrl', function (Auth, $timeout, $location,$rootScope) {
 	var app = this;
 
-	if(Auth.loggedIn()){
-		console.log('Success: login already');
-	}else {
-		console.log('Falied: login failed');
-	}
+	$rootScope.$on('$routeChangeStart',function () {
+        if(Auth.loggedIn()){
+            console.log('Success: login already');
+            Auth.getUser().then(function (data) {
+                console.log(data.data.username);
+                app.username = data.data.username;
+            })
+        }else {
+            console.log('Falied: login failed');
+            app.username = '';
+        }
+	});
 
 	this.doLogin = function (loginData) {
 		app.loading = true;
@@ -20,7 +27,9 @@ angular.module('loginController', ['authServices'])
 				app.successMsg = data.data.message + '...Redirecting';
 				//Redirect to home page
 				$timeout(function () {
-					$location.path('/about');
+					$location.path('/home');
+					app.loginData = '';
+					app.successMsg = false;
 				}, 2000);
 
 			} else {
