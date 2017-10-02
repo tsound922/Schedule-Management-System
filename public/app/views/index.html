@@ -56,11 +56,11 @@
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="/">Home</a></li>
-				<li><a href="/login">Login</a></li>
-				<li><a href="/register">Register</a></li>
+				<li><a ng-show = "!main.loggedIn" href="/login">Login</a></li>
+				<li><a ng-show = "!main.loggedIn" href="/register">Register</a></li>
 				<li><a href="/movie">Movie</a></li>
 				<li><a href="/profile">Profile</a></li>
-				<li><a href="#" ng-click="main.logout();">Logout</a></li>
+				<li><a ng-show = "main.loggedIn" href="#" ng-click="main.logout();">Logout</a></li>
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
 					<ul class="dropdown-menu">
@@ -73,7 +73,7 @@
 						<li><a href="#">One more separated link</a></li>
 					</ul>
 				</li>
-				<li><a href="#">{{main.username}}</a></li>
+				<li><a ng-show = "main.loggedIn" href="#">{{main.username}}</a></li>
 			</ul>
 		</div><!--/.nav-collapse -->
 	</div>

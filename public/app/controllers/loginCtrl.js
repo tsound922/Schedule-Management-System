@@ -7,6 +7,7 @@ angular.module('loginController', ['authServices'])
 	$rootScope.$on('$routeChangeStart',function () {
         if(Auth.loggedIn()){
             console.log('Success: login already');
+            app.loggedIn = true;
             Auth.getUser().then(function (data) {
                 console.log(data.data.username);
                 app.username = data.data.username;
@@ -14,6 +15,7 @@ angular.module('loginController', ['authServices'])
         }else {
             console.log('Falied: login failed');
             app.username = '';
+            app.loggedIn = false;
         }
 	});
 
