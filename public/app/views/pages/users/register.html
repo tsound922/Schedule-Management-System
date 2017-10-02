@@ -1,13 +1,23 @@
 <div class="page-header">User Registeration</div>
-<form ng-submit="register.regUser();">
+<form ng-submit="register.regUser();" name = "myForm" novalidate>
 	<label>Email:</label>
-	<input type="text" name="email" class="form-control" placeholder="please enter email" ng-model="register.regData.email">
+	<input type="text" name="email" class="form-control" placeholder="please enter email" ng-model="register.regData.email" required>
+	<span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+			<span ng-show="myForm.email.$error.required">Please input your email address</span>
+			<span ng-show="myForm.email.$error.email">Invalid email address</span>
+	</span>
 	<br>
 	<label>Username:</label>
-	<input type="text" name="username" class="form-control" placeholder="please enter username" ng-model="register.regData.username">
+	<input type="text" name="username" class="form-control" placeholder="please enter username" ng-model="register.regData.username" required>
+	<span style="color:red" ng-show="myForm.username.$dirty && myForm.username.$invalid">
+		<span ng-show="myForm.username.$error.required">Please input your Username!</span>
+	</span>
 	<br>
 	<label>Password:</label>
-	<input type="password" name="password" class="form-control" placeholder="please enter Password" ng-model="register.regData.password">
+	<input type="password" name="password" class="form-control" placeholder="please enter Password" ng-model="register.regData.password" required>
+	<span style="color:red" ng-show="myForm.password.$dirty">
+		<span ng-show="myForm.password.$error.required">Password can not be empty!</span>
+	</span>
 	<br>
 	<button class="btn btn-primary" type="submit">Register</button>
 </form>
