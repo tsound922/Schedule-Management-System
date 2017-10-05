@@ -9,7 +9,7 @@ angular.module('loginController', ['authServices'])
             console.log('Success: login already');
             app.loggedIn = true;
             Auth.getUser().then(function (data) {
-                console.log(data.data);
+                //console.log(data.data);
                 app.username = data.data.username;
                 app.admin = data.data.admin;
                 app.loaded = true;
@@ -26,7 +26,7 @@ angular.module('loginController', ['authServices'])
 		app.errorMsg = false;
 		Auth.login(app.regData).then(function (data) {
 			if (data.data.success) {
-				console.log(data.data)
+				//console.log(data.data)
 				app.loading = false;
 				//Create successful message
 				app.successMsg = data.data.message + '...Redirecting';
