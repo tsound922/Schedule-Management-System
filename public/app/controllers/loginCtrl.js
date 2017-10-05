@@ -32,9 +32,16 @@ angular.module('loginController', ['authServices'])
 				app.successMsg = data.data.message + '...Redirecting';
 				//Redirect to home page
 				$timeout(function () {
-					$location.path('/home');
-					app.loginData = '';
-					app.successMsg = false;
+					if(data.data.admin == false){
+						$location.path('/home');
+                        app.loginData = '';
+                        app.successMsg = false;
+					}else{
+                        $location.path('/admin');
+                        app.loginData = '';
+                        app.successMsg = false;
+					}
+
 				}, 2000);
 
 			} else {
