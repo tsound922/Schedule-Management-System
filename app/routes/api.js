@@ -29,18 +29,25 @@ module.exports = function(router){
 
 	//User login route
 	router.post('/authenticate', function (req, res) {
-		User.findOne({ username: req.body.username,admin :false}).select('email username password ').exec(function (err, user) {
+		User.findOne({ username: req.body.username,admin:false}).select('email username password admin').exec(function (err, user) {
 			if (err) throw err;
 			if(!user){
 				res.json({success: false, message:'Login failed, please check your input'});
-			}else{
-				var validatePassword = user.comparePassword(req.body.password);
-				if(!validatePassword){
-					res.json({success: false, message: 'Please input your password'})
-				}else{
-					var token = jwt.sign({username: user.username, email:user.email}, security, {expiresIn: '12h'});
-					res.json({success:true, message:"Login Successful!", token: token});
+			}
+			else{
+                if(req.body.password != null){
+                    var validatePassword = user.comparePassword(req.body.password);
+                    if(!validatePassword){
+                        res.json({success: false, message: 'Invalid password or username'})
+                    }else{
+                        var token = jwt.sign({username: user.username, email:user.email}, security, {expiresIn: '12h'});
+                        res.json({success:true, message:"Login Successful!", token: token});
+                    }
+
+                }else{
+                    res.json({success: false, message: 'Please input your password'});
 				}
+
 			}
 		});
 	});
