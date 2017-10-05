@@ -25,7 +25,6 @@ angular.module('loginController', ['authServices'])
 		app.loading = true;
 		app.errorMsg = false;
 		Auth.login(app.regData).then(function (data) {
-			console.log(data.data);
 			if (data.data.success) {
 				app.loading = false;
 				//Create successful message

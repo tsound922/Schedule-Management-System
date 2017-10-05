@@ -4,11 +4,12 @@ var security = 'security';
 module.exports = function(router){
 //localhost:8000/api/users
 //User register
-	router.post('/users', function(req, res){
+	router.post('/user', function(req, res){
 	var user = new User();
 	user.username = req.body.username;
 	user.password = req.body.password;
 	user.email = req.body.email;
+
 	if(req.body.username == null || req.body.username == '' |req.body.password ==null|| req.body.password =='' || req.body.email ==null || req.body.email ==''){
 		//res.send('Ensure username,email and password were provided');
 		res.json({ success: false, message: 'Ensure username,email and password were provided'});
@@ -28,9 +29,8 @@ module.exports = function(router){
 
 	//User login route
 	router.post('/authenticate', function (req, res) {
-		User.findOne({ username: req.body.username, admin: false}).select('email username password').exec(function (err, user) {
+		User.findOne({ username: req.body.username,admin :false}).select('email username password ').exec(function (err, user) {
 			if (err) throw err;
-
 			if(!user){
 				res.json({success: false, message:'Login failed, please check your input'});
 			}else{
@@ -38,8 +38,8 @@ module.exports = function(router){
 				if(!validatePassword){
 					res.json({success: false, message: 'Please input your password'})
 				}else{
-					var token = jwt.sign({username: user.username, email:user.email, admin:user.admin}, security, {expiresIn: '12h'});
-					res.json({success:true, message:"Login Successful!", token: token, admin: false });
+					var token = jwt.sign({username: user.username, email:user.email}, security, {expiresIn: '12h'});
+					res.json({success:true, message:"Login Successful!", token: token});
 				}
 			}
 		});
