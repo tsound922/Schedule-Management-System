@@ -12,10 +12,6 @@ angular.module('appRoutes', ['ngRoute'])
 				controller:'regCtrl',
 				controllerAs:'register'
 			})
-			.when('/movie', {
-				templateUrl: 'app/views/pages/users/movie.html',
-
-			})
 			.when('/login', {
 				templateUrl: 'app/views/pages/users/login.html'
 			})
