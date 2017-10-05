@@ -9,8 +9,9 @@ angular.module('loginController', ['authServices'])
             console.log('Success: login already');
             app.loggedIn = true;
             Auth.getUser().then(function (data) {
-                console.log(data.data.username);
+                console.log(data.data);
                 app.username = data.data.username;
+                app.admin = data.data.admin;
                 app.loaded = true;
             })
         }else {
@@ -20,12 +21,12 @@ angular.module('loginController', ['authServices'])
             app.loaded = true;
         }
 	});
-
 	this.doLogin = function (loginData) {
 		app.loading = true;
 		app.errorMsg = false;
 		Auth.login(app.regData).then(function (data) {
 			if (data.data.success) {
+				console.log(data.data)
 				app.loading = false;
 				//Create successful message
 				app.successMsg = data.data.message + '...Redirecting';
@@ -43,8 +44,10 @@ angular.module('loginController', ['authServices'])
 			}
 		});
 	};
+
 	this.logout = function () {
 		Auth.logout();
+        app.admin = false;
 		$location.path('/logout');
 		$timeout(function () {
 			$location.path('/');

@@ -12,9 +12,12 @@ angular.module('appRoutes', ['ngRoute'])
 				controller:'regCtrl',
 				controllerAs:'register'
 			})
-			.when('/login', {
-				templateUrl: 'app/views/pages/users/login.html'
-			})
+            .when('/login', {
+                templateUrl: 'app/views/pages/users/login.html'
+            })
+            .when('/admin', {
+                templateUrl: 'app/views/pages/users/admin.html'
+            })
 			.when('/profile', {
 				templateUrl: 'app/views/pages/users/profile.html'
 			})
