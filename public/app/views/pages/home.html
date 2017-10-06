@@ -1,3 +1,46 @@
-<div class="page-header" >
-	<h1>Hello {{ main.username }} from home route</h1>
+<div class="jumbotron text-center" ng-if = "!main.loggedIn">
+	<div>
+		<h1>Hi, Welcome to Easy Schedule</h1>
+	</div>
+	<div>
+		<p>Login to apply the schedule</p>
+		<a href="/login" class="btn btn-primary">Login</a>
+	</div>
+</div>
+<div class="row" ng-if = "main.loggedIn">
+	<div class="col-lg-3">
+
+	</div>
+
+	<div class = "col-lg-4" ng-controller="ScheduleController as schedule">
+		<div class="row">
+
+			<div class = "panel panel-heading">
+				<div class="panel-heading">Write your Schedule</div>
+
+				<div class="panel-body">
+					<form ng-submit="schedule.addSchedule()">
+						<input class="form-control input-lg" type="text" name="schedule" ng-model="schedule.scheduleData.content" placeholder="......" required>
+						<br>
+						<button class="btn btn-primary" type="submit">Post</button>
+					</form>
+					<div class="jumbotron text-center" ng-show="schedule.loading">
+						<span class="glyphicon glyphicon-repeat spinner"></span>
+						<p>Loading</p>
+					</div>
+
+				</div>
+
+				<div class = "row show-hide-message" ng-show="schedule.successMsg">
+					<div class="alert alert-success">{{ schedule.successMsg}}</div>
+				</div>
+
+				<div class = "row show-hide-message" ng-show = "schedule.errorMsg">
+					<div class="alert alert-danger">{{schedule.error}}</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
 </div>
