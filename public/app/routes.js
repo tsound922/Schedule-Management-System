@@ -18,6 +18,9 @@ angular.module('appRoutes', ['ngRoute'])
             .when('/admin', {
                 templateUrl: 'app/views/pages/users/admin.html'
             })
+			.when('/reset', {
+            templateUrl: 'app/views/pages/users/reset.html'
+        	})
 			.when('/profile', {
 				templateUrl: 'app/views/pages/users/profile.html'
 			})

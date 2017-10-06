@@ -1,5 +1,7 @@
 var User =  require('../models/user');
 var jwt = require('jsonwebtoken');
+
+var Schedule = require('../models/schedule');
 var security = 'security';
 module.exports = function(router){
 //localhost:8000/api/users
@@ -41,7 +43,7 @@ module.exports = function(router){
                         res.json({success: false, message: 'Invalid password or username'})
                     }else{
                     	var admin = user.admin;
-                        var token = jwt.sign({username: user.username, email:user.email, admin:user.admin}, security, {expiresIn: '12h'});
+                        var token = jwt.sign({id: user._id, username: user.username, email:user.email, admin:user.admin}, security, {expiresIn: '12h'});
                         res.json({success:true, message:"Login Successful!", token: token,admin: admin});
                     }
 
@@ -54,7 +56,7 @@ module.exports = function(router){
 	});
 	
 	router.use(function (req,res,next) {
-		var token = req.body.token || req.body.query || req.headers['x-access-token'];
+		var token = req.body.token || req.param('token') || req.body.query || req.headers['x-access-token'];
 
 		if(token){
 			//verify the token
@@ -74,7 +76,32 @@ module.exports = function(router){
 	router.post('/me', function (req,res) {
 		res.send(req.decoded);
     });
-	
+
+	//Create the schedule
+	router.route('/')
+		.post(function (req,res) {
+			var schedule = new Schedule({
+				creator: req.decoded.id,
+				content: req.body.content
+			});
+			schedule.save(function (err) {
+				if(err){
+					res.send(err);
+					return
+				}
+				res.json({message:"New schedule is added"});
+            });
+        })
+		.get(function (req,res) {
+			Schedule.find({ creator:req.decoded.id}), function(){
+				if(err){
+					res.send(err);
+					return;
+				}
+				res.json();
+			}
+        })
+
 	return router;
 }
 
