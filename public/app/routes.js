@@ -1,3 +1,4 @@
+//router for all the pages with injection
 angular.module('appRoutes', ['ngRoute'])
 	.config(function ($routeProvider, $locationProvider) {
 		$routeProvider
