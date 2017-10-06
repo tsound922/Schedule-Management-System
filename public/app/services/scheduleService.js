@@ -3,14 +3,14 @@ angular.module('scheduleService',[])
     .factory('Schedule',function ($http) {
       var scheduleFactory = {};
 
-        scheduleFactory.createSchedule = function (scheduleData) {
-            return $http.post('/api',scheduleData);
+        scheduleFactory.create = function (scheduleData) {
+            return $http.post('/api/schedule',scheduleData);
         }
-        scheduleFactory.getSchedule = function () {
-            return $http.get('/api');
+        scheduleFactory.allSchedule = function () {
+            return $http.get('/api/schedule');
         }
         return scheduleFactory;
-    })
+    });
     
 
     

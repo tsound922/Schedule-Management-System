@@ -2,8 +2,10 @@
 angular.module('appRoutes', ['ngRoute'])
 	.config(function ($routeProvider, $locationProvider) {
 		$routeProvider
-			.when('/', {
-				templateUrl: 'app/views/pages/home.html'
+			.when('/home', {
+				templateUrl: 'app/views/pages/home.html',
+				controller:'ScheduleController',
+				controllerAs:'schedule'
 			})
 			.when('/about', {
 				templateUrl: 'app/views/pages/about.html'

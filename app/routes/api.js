@@ -6,7 +6,7 @@ var security = 'security';
 module.exports = function(router){
 //localhost:8000/api/users
 //User register
-	router.post('/user', function(req, res){
+	router.post('/users', function(req, res){
 	var user = new User();
 	user.username = req.body.username;
 	user.password = req.body.password;
@@ -72,11 +72,13 @@ module.exports = function(router){
 			res.json({success: false,message: 'No token provided'});
 		}
     });
-	
+    router.post('/me', function (req,res) {
+        res.send(req.decoded);
+    });
 
 
 	//Create the schedule
-	router.route('/')
+	router.route('/schedule')
 		.post(function (req,res) {
 			var schedule = new Schedule({
 				creator: req.decoded.id,
@@ -87,7 +89,7 @@ module.exports = function(router){
 					res.send(err);
 					return
 				}
-				res.json({message:"New schedule is added"});
+				res.json({success:true, message:"New schedule is added"});
             });
         })
         .get(function (req,res) {
@@ -101,9 +103,7 @@ module.exports = function(router){
         });
 
 
-    router.post('/me', function (req,res) {
-        res.send(req.decoded);
-    });
+
 
 	return router;
 }
