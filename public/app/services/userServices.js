@@ -9,9 +9,9 @@ angular.module('userServices', [])
 		return $http.get('/api/user');
     }
     */
-    userFactory.activeAccount = function(token){
+ /*   userFactory.activeAccount = function(token){
         return $http.put('/api/activate/' + token);
-    }
-    
-	return userFactory;
+    }  
+*/
+    return userFactory;
 });

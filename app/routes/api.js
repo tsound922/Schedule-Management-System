@@ -40,9 +40,9 @@ module.exports = function(router){
                 var email = {
                 from: 'no-reply@easyschedule.com',
                 to: user.email,
-                subject: 'Activate your account.',
-                text: 'Hello ' + user.name,
-                html: 'Hello ' + user.name + ',<br><br> Thank you for registering. Please click the link below to activate your account.<br><a href="http://localhost:8000/activate/' + user.temporarytoken + '"> http://localhost:8000/activate</a>' 
+                subject: 'Welcome to Easy Schedule.',
+                text: 'Welcome ' + user.username,
+                html: 'Hello ' + user.username + ',<br><br> Thank you for registering.' 
                 };
 
                 client.sendMail(email, function(err, info){
@@ -54,7 +54,7 @@ module.exports = function(router){
                     }
                 });
 				//res.send('User created!');
-				res.json({success:true,message: 'You are registered! Please check your e-mail for activation link.'});
+				res.json({success:true,message: 'Congratulations! You are registered!'});
 			}
 		});
 	}
@@ -86,48 +86,7 @@ module.exports = function(router){
 			}
 		});
 	});
-    
-    router.put('/activate/:token', function(req,res){
-        User.findOne({ temporarytoken: req.params.token }, function(err,user){
-            if (err) throw err;
-            var token = req.params.token;
-    		jwt.verify(token, security, function (err,decoded) {
-				if(err){
-                    res.json({success: false, message:'Activation link expired!'});
-				} else if(!user) {
-                    res.json({success: false, message:'Activation link expired!'});
-                    } else {
-                    user.temporarytoken = false;
-                    user.active = true;
-                    user.save(function(err){
-                        if (err) {
-                            console.log(err);
-                        } else {    
-                          var email = {
-                              from: 'no-reply@easyschedule.com',
-                              to: user.email,
-                              subject: 'Account activated.',
-                              text: 'Hello ' + user.name + 'You account has been activated',
-                              html: 'Hello ' + user.name + ',<br><br> You account has been activated.' 
-                          };
-
-                          client.sendMail(email, function(err, info){
-                          if (err ){
-                              console.log(error);
-                          }
-                              else {
-                                  console.log('Message sent: ' + info.response);
-                              }
-                          }); 
-                          res.json({success: true, message:'Your account is now activated!'});
-                        }
-                    });   
-				}
-            });
-        });
-    });
-    
-    
+      
 	//this module is to filter the user who does not have a valid token, it will deny the access if the token is not given or invalid
 	router.use(function (req,res,next) {
 		var token = req.body.token || req.param('token') || req.body.query || req.headers['x-access-token'];

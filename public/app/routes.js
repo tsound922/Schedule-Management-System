@@ -30,14 +30,9 @@ angular.module('appRoutes', ['ngRoute'])
 			.when('/logout',{
 				templateUrl: 'app/views/pages/users/logout.html'
 			})
-            .when('/activate/:token', {
-                templateUrl: 'app/views/pages/users/activation/activate.html',
-                controller: 'emailCtrl',
-                controllerAs: 'email'
-            })
 			.otherwise({redirectTo: '/'});
-		$locationProvider.html5Mode({
-			enabled: true,
-			requireBase: false
+                $locationProvider.html5Mode({
+                enabled: true,
+			    requireBase: false
 		});
 	});
