@@ -10,9 +10,10 @@ angular.module('loginController', ['authServices'])
             console.log('Success: login already');
             app.loggedIn = true;
             Auth.getUser().then(function (data) {
-                //console.log(data.data);
+                console.log(data.data);
                 app.username = data.data.username;
                 app.admin = data.data.admin;
+                app.email = data.data.email;
                 app.loaded = true;
             })
         }else {
