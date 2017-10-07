@@ -1,9 +1,12 @@
 angular.module('emailController', ['userServices'])
 
-    .controller('emailCtrl', function($routeParams, User) {
-        
-        User.activeAccount($routeParams.token).then(function(data) {
-            console.log(data);
-        });
+    .controller('usernameCtrl', function(User){
     
-});
+        app = this;
+    
+        app.sendUsername = function(userData){
+            User.sendUsername(app.userData.email).then(function(data){
+                console.log(data);
+            });
+        }
+    });

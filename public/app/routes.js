@@ -21,15 +21,21 @@ angular.module('appRoutes', ['ngRoute'])
             .when('/admin', {
                 templateUrl: 'app/views/pages/users/admin.html'
             })
-			.when('/reset', {
-            templateUrl: 'app/views/pages/users/reset.html'
-        	})
 			.when('/profile', {
 				templateUrl: 'app/views/pages/users/profile.html'
 			})
 			.when('/logout',{
 				templateUrl: 'app/views/pages/users/logout.html'
 			})
+            .when('/resetusername', {
+                templateUrl: 'app/views/pages/users/reset/username.html',
+                controller: 'usernameCtrl',
+                controllerAs: 'username',
+                authenticated: false
+        	})
+            .when('/resetpassword', {
+                templateUrl: 'app/views/pages/users/reset/password.html'
+        	})
 			.otherwise({redirectTo: '/'});
                 $locationProvider.html5Mode({
                 enabled: true,

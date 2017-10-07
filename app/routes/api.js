@@ -47,7 +47,7 @@ module.exports = function(router){
 
                 client.sendMail(email, function(err, info){
                     if (err ){
-                        console.log(error);
+                        console.log(err);
                     }
                     else {
                         console.log('Message sent: ' + info.response);
@@ -86,7 +86,37 @@ module.exports = function(router){
 			}
 		});
 	});
-      
+     
+// Retrieve username    
+    router.get('/resetusername/:email', function(req,res){
+        User.findOne({ email: req.params.email }).select('email name username').exec(function(err, user){
+            if(err){
+                res.json({ success: false, message: err });
+            } else {
+                if (!user){
+                    ers.json({ success: false, message: 'Email not found.'});
+                } else {
+                    var email = {
+                        from: 'no-reply@easyschedule.com',
+                        to: user.email,
+                        subject: 'This is your username.',
+                        text: 'Hello ' + user.username,
+                        html: 'Hello ' + user.username + ',<br><br> is your username. Keep it well.' 
+                    };
+
+                    client.sendMail(email, function(err, info){
+                        if (err ){
+                            console.log(err);
+                        } else {
+                        console.log('Message sent: ' + info.response);
+                    }
+                });
+                    res.json({ success: true, message: 'Username has been sent to email.' });
+                }
+            }
+        });
+    });
+    
 	//this module is to filter the user who does not have a valid token, it will deny the access if the token is not given or invalid
 	router.use(function (req,res,next) {
 		var token = req.body.token || req.param('token') || req.body.query || req.headers['x-access-token'];

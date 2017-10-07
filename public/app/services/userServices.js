@@ -13,5 +13,10 @@ angular.module('userServices', [])
         return $http.put('/api/activate/' + token);
     }  
 */
+
+    userFactory.sendUsername = function(userData) {
+        return $http.get('/api/resetusername/' + userData);
+    };
+    
     return userFactory;
 });
