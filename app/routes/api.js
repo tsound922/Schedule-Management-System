@@ -1,10 +1,9 @@
 var User =  require('../models/user');
 var jwt = require('jsonwebtoken');
-
 var Schedule = require('../models/schedule');
 var security = 'security';
 module.exports = function(router){
-//localhost:8000/api/users
+
 //User register
 	router.post('/users', function(req, res){
 	var user = new User();
@@ -18,10 +17,8 @@ module.exports = function(router){
 	}else{
 		user.save(function (err) {
 			if(err){
-				//res.send('Username or email already exist.');
 				res.json({success:false, message:'Username or email already exist.'});
 			}else{
-				//res.send('User created!');
 				res.json({success:true,message: 'User created!'});
 			}
 		});
@@ -76,8 +73,7 @@ module.exports = function(router){
         res.send(req.decoded);
     });
 
-
-	//Create the schedule
+	//Create and get the schedule
 	router.route('/schedule')
 		.post(function (req,res) {
 			var schedule = new Schedule({
