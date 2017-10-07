@@ -1,4 +1,5 @@
 // put the dependency in []
+//this js is a controller that can get the detail from the service
 angular.module('loginController', ['authServices'])
 
 .controller('loginCtrl', function (Auth, $timeout, $location,$rootScope) {

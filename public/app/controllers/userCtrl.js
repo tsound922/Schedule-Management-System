@@ -3,7 +3,7 @@ angular.module('userControllers', ['userServices'])
 
 		var app = this;
 
-		this.regUser = function (regData) {
+		app.regUser = function (regData) {
 			app.loading = true;
 			app.errorMsg = false;
 			User.create(app.regData).then(function (data) {
@@ -13,7 +13,7 @@ angular.module('userControllers', ['userServices'])
 						app.successMsg = data.data.message + '...Redirecting';
 						//Redirect to home page
 						$timeout(function () {
-							$location.path('/');
+							$location.path('/home');
 						}, 2000);
 
 					} else {

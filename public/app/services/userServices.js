@@ -5,5 +5,10 @@ angular.module('userServices', [])
 	userFactory.create = function (regData) {
 		return $http.post('/api/users', regData);
 	}
+	/*userFactory.all = function () {
+		return $http.get('/api/user');
+    }
+    */
+	
 	return userFactory;
 });

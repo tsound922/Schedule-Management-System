@@ -6,7 +6,7 @@ var security = 'security';
 module.exports = function(router){
 //localhost:8000/api/users
 //User register
-	router.post('/user', function(req, res){
+	router.post('/users', function(req, res){
 	var user = new User();
 	user.username = req.body.username;
 	user.password = req.body.password;
@@ -29,7 +29,7 @@ module.exports = function(router){
 
 });
 
-	//User login route
+	//User login check and put the data in the json package
 	router.post('/authenticate', function (req, res) {
 		User.findOne({ username: req.body.username}).select('email username password admin').exec(function (err, user) {
 			if (err) throw err;
@@ -54,7 +54,7 @@ module.exports = function(router){
 			}
 		});
 	});
-	
+	//this module is to filter the user who does not have a valid token, it will deny the access if the token is not given or invalid
 	router.use(function (req,res,next) {
 		var token = req.body.token || req.param('token') || req.body.query || req.headers['x-access-token'];
 
@@ -72,35 +72,38 @@ module.exports = function(router){
 			res.json({success: false,message: 'No token provided'});
 		}
     });
-	
-	router.post('/me', function (req,res) {
-		res.send(req.decoded);
+    router.post('/me', function (req,res) {
+        res.send(req.decoded);
     });
 
+
 	//Create the schedule
-	router.route('/')
+	router.route('/schedule')
 		.post(function (req,res) {
 			var schedule = new Schedule({
 				creator: req.decoded.id,
-				content: req.body.content
+				content: req.body.content,
 			});
 			schedule.save(function (err) {
 				if(err){
 					res.send(err);
 					return
 				}
-				res.json({message:"New schedule is added"});
+				res.json({success:true, message:"New schedule is added"});
             });
         })
-		.get(function (req,res) {
-			Schedule.find({ creator:req.decoded.id}), function(){
-				if(err){
-					res.send(err);
-					return;
-				}
-				res.json();
-			}
-        })
+        .get(function (req,res) {
+            Schedule.find({ creator:req.decoded.id}, function(err,schedules){
+                if(err){
+                    res.send(err);
+                    return;
+                }
+                res.json(schedules);
+            });
+        });
+
+
+
 
 	return router;
 }
