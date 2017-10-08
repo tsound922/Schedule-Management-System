@@ -77,7 +77,8 @@ module.exports = function(router){
 	router.route('/schedule')
 		.post(function (req,res) {
 			var schedule = new Schedule({
-				creator: req.decoded.id,
+				creator: req.decoded.username,
+				refId: req.decoded.id,
 				content: req.body.content,
 			});
 			schedule.save(function (err) {
@@ -85,18 +86,19 @@ module.exports = function(router){
 					res.send(err);
 					return
 				}
-				res.json({success:true, message:"New schedule is added"});
-            });
-        })
-        .get(function (req,res) {
-            Schedule.find({ creator:req.decoded.id}, function(err,schedules){
-                if(err){
-                    res.send(err);
-                    return;
-                }
-                res.json(schedules);
+				res.json({success:true, message:"New schedule is added",creator: req.decoded.username});
             });
         });
+    router.get('/list',function (req,res) {
+        Schedule.find({},function (err,schedules) {
+            if(err) throw err;
+            if(!schedules){
+                res.json({success: false, message: 'No schedule found'});
+            }else{
+                res.json(schedules);
+            }
+        })
+    })
 
 
 
