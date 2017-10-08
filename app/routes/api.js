@@ -98,6 +98,13 @@ module.exports = function(router){
                 res.json(schedules);
             }
         })
+    });
+    router.delete('/list/:_id', function (req,res) {
+    	var deleteApplier = req.params.creator;
+		Schedule.findOneAndRemove({_id:req.params._id},function (err,content) {
+			if(err) throw err;
+			res.json({success: true, message: 'Content deleted'});
+        })
     })
 
 
