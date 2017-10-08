@@ -9,6 +9,7 @@ var UserSchema = new Schema({
 	email: {type: String, lowercase:true, required:true, unique:true},
 	admin: {type: Boolean, default:false},
     active: {type: Boolean, required:true, default:false},
+    resettoken: {type: String, required:false}
 });
 
 UserSchema.pre('save',function(next){
