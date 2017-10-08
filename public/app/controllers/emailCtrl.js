@@ -8,5 +8,5 @@ angular.module('emailController', ['userServices'])
             User.sendUsername(app.userData.email).then(function(data){
                 console.log(data);
             });
-        }
+        };
     });

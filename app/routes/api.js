@@ -94,24 +94,20 @@ module.exports = function(router){
                 res.json({ success: false, message: err });
             } else {
                 if (!user){
-                    ers.json({ success: false, message: 'Email not found.'});
+                    res.json({ success: false, message: 'Email not found.'});
                 } else {
                     var email = {
                         from: 'no-reply@easyschedule.com',
                         to: user.email,
                         subject: 'This is your username.',
                         text: 'Hello ' + user.username,
-                        html: 'Hello ' + user.username + ',<br><br> is your username. Keep it well.' 
+                        html: 'Hello ' + user.username + ',<br><br> This is your username. Keep it well.' 
                     };
 
                     client.sendMail(email, function(err, info){
-                        if (err ){
-                            console.log(err);
-                        } else {
-                        console.log('Message sent: ' + info.response);
-                    }
-                });
-                    res.json({ success: true, message: 'Username has been sent to email.' });
+                        if (err) console.log(err);
+                    });
+                    res.json({ success: true, message: 'Username has been sent to email.' }); 
                 }
             }
         });
