@@ -18,9 +18,17 @@ angular.module('userServices', [])
         return $http.get('/api/resetusername/' + userData);
     };
     
-    userFactory.sendPassword= function(resetData) {
-        return $http.get('/api/resetpassword' + resetData);
+    userFactory.sendPassword = function(resetData) {
+        return $http.put('/api/resetpassword', resetData);
     };
+    
+    userFactory.resetUser = function(token) {
+        return $http.get('/api/resetpassword/' + token);
+    };
+    
+    userFactory.savePassword = function(regData) {
+        return $http.put('/api/savepassword', regData)
+    }
     
     return userFactory;
 });

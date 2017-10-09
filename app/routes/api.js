@@ -113,17 +113,17 @@ module.exports = function(router){
         });
     });
     
-// Reset password
+// Send reset password link
     
     router.put('/resetpassword', function(req,res){
         User.findOne({ username: req.body.username }).select('username active email resettoken name').exec(function(err, user) {
 			if (err) throw err;
 			if (!user) {
                 res.json({ success: false, message: 'Username was not found' }); 
-			} else if (!user.active) {
-				res.json({ success: false, message: 'Account has not yet been activated' }); 
+//			} else if (!user.active) {
+//				res.json({ success: false, message: 'Account has not yet been activated' }); 
 			} else {
-				user.resettoken = jwt.sign({ username: user.username, email: user.email }, secret, { expiresIn: '24h' }); 
+				user.resettoken = jwt.sign({ username: user.username, email: user.email }, security, { expiresIn: '24h' }); 
 				user.save(function(err) {
 					if (err) {
 						res.json({ success: false, message: err }); 
@@ -132,8 +132,8 @@ module.exports = function(router){
 							from: 'no-reply@easyschedule.com',
 							to: user.email,
 							subject: 'Reset Your Password',
-							text: 'Hello ' + user.name + ', You requested a password reset link. Please click on the link below to reset your password:<br><br><a href="http://localhost:8000/reset/' + user.resettoken,
-							html: 'Hello<strong> ' + user.name + '</strong>,<br><br>You requested a password reset link. Please click on the link below to reset your password:<br><br><a href="http://localhost:8000/reset/' + user.resettoken + '">http://localhost:8000/reset/</a>'
+							text: 'Hello ' + user.username + ', You requested a password reset link. Please click on the link below to reset your password:<br><br><a href="http://localhost:8000/reset/' + user.resettoken,
+							html: 'Hello<strong> ' + user.username + '</strong>,<br><br>You requested a password reset link. Please click on the link below to reset your password:<br><br><a href="http://localhost:8000/reset/' + user.resettoken + '">http://localhost:8000/reset/</a>'
 						};
 						client.sendMail(email, function(err, info) {
 							if (err) console.log(err);
@@ -145,6 +145,52 @@ module.exports = function(router){
 		});
     });
     
+    router.get('/resetpassword/:token', function(req, res) {
+		User.findOne({ resettoken: req.params.token }).select().exec(function(err, user) {
+			if (err) throw err; 
+			var token = req.params.token;
+			jwt.verify(token, security, function(err, decoded) {
+				if (err) {
+					res.json({ success: false, message: 'Password link has expired' }); 
+				} else {
+					if (!user) {
+						res.json({ success: false, message: 'Password link has expired' }); 
+					} else {
+						res.json({ success: true, user: user }); 
+					}
+				}
+			});
+		});
+	});
+    
+    router.put('/savepassword', function(req, res) {
+		User.findOne({ username: req.body.username }).select('username email name password resettoken').exec(function(err, user) {
+			if (err) throw err;
+			if (req.body.password == null || req.body.password == '') {
+				res.json({ success: false, message: 'Password not provided' });
+			} else {
+				user.password = req.body.password; 
+				user.resettoken = false;  
+				user.save(function(err) {
+					if (err) {
+						res.json({ success: false, message: err });
+					} else {
+						var email = {
+							from: 'no-reply@easyschedule.com',
+							to: user.email,
+							subject: 'Password Has Been Reset',
+							text: 'Hello ' + user.username + ', You are receiving this email is because your EasySchedule password has been reset.',
+							html: 'Hello<strong> ' + user.username + '</strong>,<br><br>You are receiving this email is because your EasySchedule password has been reset.'
+						};
+						client.sendMail(email, function(err, info) {
+							if (err) console.log(err);
+						});
+						res.json({ success: true, message: 'Password has been reset!' });
+					}
+				});
+			}
+		});
+	});
 	//this module is to filter the user who does not have a valid token, it will deny the access if the token is not given or invalid
 	router.use(function (req,res,next) {
 		var token = req.body.token || req.param('token') || req.body.query || req.headers['x-access-token'];
