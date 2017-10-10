@@ -1,48 +1,14 @@
-<div class="page-header" ng-if = "main.loggedIn">
-	<h1>Available shifts </h1>
-	<div class="container">
-		<div class="row">
-			<table class="table">
-				<thead>
-				<tr>
-					<th>Monday</th>
-					<th>Tuesday</th>
-					<th>Wednesday</th>
-					<th>Thursday</th>
-					<th>Friday</th>
-					<th>Saturday</th>
-					<th>Sunday</th>
-				</tr>
-				<tr>
-					<td class="card" data-id="0">7/11</td>
-					<td>Costco</td>
-					<td>Woolies</td>
-					<td>Starbucks</td>
-					<td>Servo</td>
-					<td>Shell</td>
-					<td>Tobacoonist</td>
-				</tr>
-				</thead>
-			</table>
+<div class="page-header">
+	<h2 class="center-block">Your Profile</h2>
+	<table class="table">
+		<tr>
+			<th>Username</th>
+			<th>Email</th>
 
-			<h1>Shift {{"for"+" " + main.username}}</h1>
-			<div class="container">
-				<div class="row">
-					<table class="table">
-						<thead>
-						<tr>
-							<th>Monday</th>
-							<th>Tuesday</th>
-							<th>Wednesday</th>
-							<th>Thursday</th>
-							<th>Friday</th>
-							<th>Saturday</th>
-							<th>Sunday</th>
-						</tr>
-						</thead>
-					</table>
-				</div>
-			</div>
-		</div>
-	</div>
+		</tr>
+		<tr >
+			<td>{{main.username}}</td>
+			<td>{{main.email}}</td>
+		</tr>
+	</table>
 </div>

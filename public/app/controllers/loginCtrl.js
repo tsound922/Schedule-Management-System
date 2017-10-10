@@ -23,6 +23,7 @@ angular.module('loginController', ['authServices'])
             app.loaded = true;
         }
 	});
+
 	this.doLogin = function (loginData) {
 		app.loading = true;
 		app.errorMsg = false;
@@ -34,6 +35,7 @@ angular.module('loginController', ['authServices'])
 				app.successMsg = data.data.message + '...Redirecting';
 				//Redirect to home page
 				$timeout(function () {
+					//Distinguish the user permission
 					if(data.data.admin == false){
 						$location.path('/home');
                         app.loginData = '';

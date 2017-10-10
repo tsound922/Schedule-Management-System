@@ -15,7 +15,8 @@
             <td>{{user.username }}</td>
             <td>{{user.email}}</td>
             <td>
-                <button type="button" class="btn btn-primary" ng-show = "main.admin" ng-click="">Edit</button>
+                <!-- If the user in the table is admin, the delete function will be unavailable -->
+                <a href="/edituser/{{user._id}}"><button type="button" class="btn btn-primary" ng-show = "main.admin" >Edit</button></a>
                 <button type="button" class="btn btn-primary" ng-show = "!user.admin" ng-click="admin.deleteUser(user.username)">Delete</button>
             </td>
         </tr>

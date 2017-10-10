@@ -1,7 +1,7 @@
 <div class="page-header"><h1>User Registeration</h1></div>
 <form ng-submit="register.regUser();" name = "myForm" novalidate>
 	<label>Email:</label>
-	<input type="text" name="email" class="form-control" placeholder="please enter email" ng-model="register.regData.email" required>
+	<input type="email" name="email" class="form-control" placeholder="please enter email" ng-model="register.regData.email" required>
 	<span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
 			<span ng-show="myForm.email.$error.required">Please input your email address</span>
 			<span ng-show="myForm.email.$error.email">Invalid email address</span>

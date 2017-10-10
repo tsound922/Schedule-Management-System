@@ -1,4 +1,13 @@
-<div class="page-header">
+<div class="jumbotron text-center" ng-if = "!main.loggedIn">
+    <div>
+        <h1>Hi, Welcome to Easy Schedule</h1>
+    </div>
+    <div>
+        <p>Login to apply the schedule</p>
+        <a href="/login" class="btn btn-primary">Login</a>
+    </div>
+</div>
+<div class="page-header" ng-if = "main.loggedIn">
     <h1 class="center-block">Schedule list</h1>
     <button type="button" class="btn" ng-click="listall.showByName(name)">Search</button>
     <input type = "text" class="form-control" placeholder="Please input the name of applicant" ng-model = "name">
@@ -14,8 +23,8 @@
         <tr ng-repeat="info in listall.applies | filter:listall.name" >
             <td>{{info.creator}}</td>
             <td>{{info.content}}</td>
-            <td >{{info.created}}</td>
-            <td><button type="button" class="btn btn-primary" ng-click="listall.deleteApply(info._id)">Delete</button></td>
+            <td >{{info.created | date:'short'}}</td>
+            <td><button type="button" class="btn btn-primary" ng-show = "main.admin" ng-click="listall.deleteApply(info._id)">Delete</button></td>
         </tr>
     </table>
 </div>

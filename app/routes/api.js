@@ -123,14 +123,33 @@ module.exports = function (router) {
             }
         })
     });
+    //delete the user
     router.delete('/listusers/:username', function (req, res) {
         User.findOneAndRemove({username: req.params.username}, function (err) {
             if (err) throw err;
             res.json({success: true, message: 'User deleted'})
         })
 
-
     });
+    //locate the user you want to update
+
+    router.get('/edit/:id', function (req, res) {
+        var editUser = req.params.id;
+        User.findOne({_id: editUser}, function (err, user) {
+            if (err) {
+                throw err;
+            }
+            if (!user) {
+                res.json({success: false, message: 'No user found'});
+            }
+            else {
+                res.json({success: true, user: user});
+            }
+        });
+
+    })
+
+
     return router;
 }
 

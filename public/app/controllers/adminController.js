@@ -6,6 +6,7 @@ angular.module('adminController', [])
         app.names = '';
         app.show = false;
 
+
         //get all the users in user schema
         function getUsers() {
             User.getUsers().then(function (data) {
@@ -38,4 +39,4 @@ angular.module('adminController', [])
                 }
             })
         }
-    });
+    })

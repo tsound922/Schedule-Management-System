@@ -1,4 +1,10 @@
 <div class="page-header" >
-    <h2>Hello, Admin {{ main.username }}</h2>
-    <a href="/schedule"><button type="button" class="btn btn-info">Manage the apply</button></a>
+    <h2 ng-show="main.admin">Hello, {{'Admin '+ main.username }}</h2>
+    <a href="/schedule"><button type="button" ng-show = "main.admin" class="btn btn-info">Manage the apply</button></a>
+    <a href="/usermanage"><button type="button" ng-show = "main.admin"class="btn btn-info">User Management</button></a>
+
+
+</div>
+<div ng-show="!main.admin">
+    <div class="alert alert-danger">Access Denied! You have no permission to access this page</div>
 </div>

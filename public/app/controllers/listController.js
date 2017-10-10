@@ -29,6 +29,7 @@ angular.module('listController', [])
              if(data.data.success){
                  getApply();
              }else{
+                 console.log(data.data)
                  app.err = data.data.message;
              }
          })
