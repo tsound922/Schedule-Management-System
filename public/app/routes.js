@@ -4,8 +4,8 @@ angular.module('appRoutes', ['ngRoute'])
 		$routeProvider
 			.when('/home', {
 				templateUrl: 'app/views/pages/home.html',
-				controller:'ScheduleController',
-				controllerAs:'schedule'
+				controller:'ScheduleController'
+
 			})
 			.when('/about', {
 				templateUrl: 'app/views/pages/about.html'
@@ -21,18 +21,30 @@ angular.module('appRoutes', ['ngRoute'])
             .when('/admin', {
                 templateUrl: 'app/views/pages/users/admin.html'
             })
-			.when('/profile', {
-				templateUrl: 'app/views/pages/users/profile.html'
-			})
-			.when('/logout',{
-				templateUrl: 'app/views/pages/users/logout.html'
-			})
+			.when('/reset', {
+            templateUrl: 'app/views/pages/users/reset.html'
+        	})
+            .when('/profile', {
+                templateUrl: 'app/views/pages/users/profile.html'
+            })
+            .when('/schedule', {
+                templateUrl: 'app/views/pages/users/schedule.html',
+				controller:'listCtrl',
+				controllerAs:'listall'
+            })
+
+			      .when('/profile', {
+				        templateUrl: 'app/views/pages/users/profile.html'
+			      })
+			      .when('/logout',{
+				        templateUrl: 'app/views/pages/users/logout.html'
+			      })
             .when('/resetusername', {
                 templateUrl: 'app/views/pages/users/reset/username.html',
                 controller: 'usernameCtrl',
                 controllerAs: 'username',
                 authenticated: false
-        	})
+        	  })
             .when('/resetpassword', {
                 templateUrl: 'app/views/pages/users/reset/password.html',
                 controller: 'passwordCtrl',

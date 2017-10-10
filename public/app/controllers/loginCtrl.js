@@ -13,6 +13,7 @@ angular.module('loginController', ['authServices'])
                 //console.log(data.data);
                 app.username = data.data.username;
                 app.admin = data.data.admin;
+                app.email = data.data.email;
                 app.loaded = true;
             })
         }else {

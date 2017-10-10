@@ -1,0 +1,26 @@
+<div class="page-header" ng-if = "main.admin">
+    <h1 class="center-block">User Management</h1>
+   <button type="button" class="btn" ng-click="admin.showByName(names)">Search</button>
+    <input type = "text" class="form-control" placeholder="Please input the username" ng-model = "names">
+    <br>
+    <div class= "alert alert-warning" ng-show="admin.show">{{admin.err}}</div>
+    <br>
+    <table class="table">
+        <tr>
+            <th>User Name</th>
+            <th>Email</th>
+            <th></th>
+        </tr>
+        <tr ng-repeat="user in admin.users | filter:admin.names" >
+            <td>{{user.username }}</td>
+            <td>{{user.email}}</td>
+            <td>
+                <button type="button" class="btn btn-primary" ng-show = "main.admin" ng-click="">Edit</button>
+                <button type="button" class="btn btn-primary" ng-show = "!user.admin" ng-click="admin.deleteUser(user.username)">Delete</button>
+            </td>
+        </tr>
+    </table>
+</div>
+<div ng-show="!main.admin">
+    <div class="alert alert-danger">Access Denied! You have no permission to access this page</div>
+</div>

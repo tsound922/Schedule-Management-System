@@ -5,9 +5,12 @@ angular.module('scheduleService',[])
 
         scheduleFactory.create = function (scheduleData) {
             return $http.post('/api/schedule',scheduleData);
-        }
-        scheduleFactory.allSchedule = function () {
-            return $http.get('/api/schedule');
+        };
+        scheduleFactory.getApplies = function () {
+            return $http.get('/api/list');
+        };
+        scheduleFactory.deleteApply = function (ID) {
+            return $http.delete('/api/list/' + ID);
         }
         return scheduleFactory;
     });

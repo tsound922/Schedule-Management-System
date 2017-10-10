@@ -1,19 +1,16 @@
 //Sending data to the users api
 angular.module('userServices', [])
 .factory('User',function ($http) {
-	userFactory  = {};
-	userFactory.create = function (regData) {
-		return $http.post('/api/users', regData);
-	}
-	/*userFactory.all = function () {
-		return $http.get('/api/user');
+	  userFactory  = {};
+	  userFactory.create = function (regData) {
+		    return $http.post('/api/users', regData);
+	  };
+	  userFactory.getUsers = function () {
+		    return $http.get('/api/listusers');
     }
-    */
- /*   userFactory.activeAccount = function(token){
-        return $http.put('/api/activate/' + token);
-    }  
-*/
-
+    userFactory.deleteUser = function (user) {
+		    return $http.delete('/api/listusers/' + user);
+    }
     userFactory.sendUsername = function(userData) {
         return $http.get('/api/resetusername/' + userData);
     };
@@ -30,5 +27,5 @@ angular.module('userServices', [])
         return $http.put('/api/savepassword', regData)
     }
     
-    return userFactory;
-});
+     return userFactory;
+  });
