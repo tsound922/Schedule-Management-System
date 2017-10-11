@@ -34,11 +34,6 @@ angular.module('appRoutes', ['ngRoute'])
             .when('/profile', {
                 templateUrl: 'app/views/pages/users/profile.html'
             })
-            .when('/edituser/:id', {
-                templateUrl: 'app/views/pages/users/edituser.html',
-				controller: 'editController',
-				controllerAs: 'edit'
-            })
             .when('/usermanage', {
                 templateUrl: 'app/views/pages/users/usermanage.html',
 				controller: 'adminCtrl',

@@ -127,7 +127,7 @@ module.exports = function (router) {
     });
     //Update the password
     router.put('/passwordupdate', function (req, res) {
-        User.findOne({username: res.body.username}).select().exec(function (err, user) {
+        User.findOne({username: req.body.username}).select('username email password temporary').exec(function (err, user) {
             if (err) throw err;
             if (req.body.password != null && req.body.password != '') {
                 user.password = req.body.password;

@@ -29,7 +29,7 @@ angular.module('resetCtrl', ['userServices'])
             }
         };
     })
-    .controller('resetController', function ($routeParams, User) {
+    .controller('resetController', function ($routeParams, User, $scope, $timeout) {
         var app = this;
         app.expired = true;
         app.error = false;
@@ -39,15 +39,19 @@ angular.module('resetCtrl', ['userServices'])
                 console.log(data)
                 app.expired = false;
                 app.success = 'Please enter your new password'
+                $scope.username = data.data.user.username;
+                $timeout(function () {
+                    $location.path('/home');
+                })
             } else {
                 console.log(data)
                 app.error = data.data.message;
             }
         })
 
-        app.passwordUpdate = function (regData, $valid, confirmed) {
+        app.passwordUpdate = function (regData) {
             app.error = false;
-            if (valid && confirmed) {
+            app.regData.username = $scope.username;
                 User.passwordUpdate(app.regData).then(function (data) {
                     if (data.data.success) {
                         app.success = data.data.message;
@@ -55,9 +59,7 @@ angular.module('resetCtrl', ['userServices'])
                         app.error = data.data.message;
                     }
                 })
-            }else{
-                app.error = 'Password does not match'
-            }
+
         }
 
     })

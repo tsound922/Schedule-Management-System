@@ -1,17 +1,12 @@
 <div class="page-header"><h1>Reset Password</h1></div>
-<form ng-submit="reset.passwordUpdate(regData, regForm.$valid, confirmed)" ng-show = "!reset.Expired" name = "myForm" novalidate>
-    <label>Password:</label>
-    <input type="password" name="password" class="form-control" placeholder="please enter Password" ng-model="register.regData.password" required>
+<form ng-submit="reset.passwordUpdate(regData)" ng-show = "!reset.Expired" name = "myForm" novalidate>
+    <label>Confirm Your Password:</label>
+    <input type="password" name="password" class="form-control" placeholder="please input your new Password" ng-model="reset.regData.password" required>
     <span style="color:red" ng-show="myForm.password.$dirty">
 		<span ng-show="myForm.password.$error.required">Password can not be empty!</span>
 	</span>
     <br>
-    <label>Confirm Password:</label>
-    <input type="password" name="password" class="form-control" placeholder="please enter Password" ng-model="register.regData.password" required>
-    <span style="color:red" ng-show="myForm.password.$dirty">
-		<span ng-show="myForm.password.$error.required">Password can not be empty!</span>
-	</span>
-    <button class="btn btn-primary" type="submit">Register</button>
+    <button class="btn btn-primary" type="submit">Submit</button>
 </form>
 <br />
 <div class = "row show-hide-message" ng-show="reset.success">
