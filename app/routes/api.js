@@ -2,7 +2,21 @@ var User = require('../models/user');
 var jwt = require('jsonwebtoken');
 var Schedule = require('../models/schedule');
 var security = 'security';
+
+var nodemailer = require('nodemailer');
+var sgTransport = require('nodemailer-sendgrid-transport');
+
 module.exports = function (router) {
+
+    //configuration of nodemailer-sendgrid
+    var options = {
+        auth: {
+            api_user: 'tsound922',
+            api_key: 'Wzy890922',
+        }
+    }
+
+    var client = nodemailer.createTransport(sgTransport(options));
 
 //User register
     router.post('/users', function (req, res) {
@@ -12,7 +26,6 @@ module.exports = function (router) {
         user.email = req.body.email;
 
         if (req.body.username == null || req.body.username == '' | req.body.password == null || req.body.password == '' || req.body.email == null || req.body.email == '') {
-            //res.send('Ensure username,email and password were provided');
             res.json({success: false, message: 'Ensure username,email and password were provided'});
         } else {
             user.save(function (err) {
@@ -55,6 +68,82 @@ module.exports = function (router) {
 
             }
         });
+    });
+    //provide a email with a temporary token for user
+    router.put('/reset', function (req, res) {
+        User.findOne({username: req.body.username}).select('username email temporary').exec(function (err, user) {
+            if (err) throw err;
+            if (!user) {
+                res.json({success: false, message: 'This username is not available'});
+            }
+            else {
+                user.temporary = jwt.sign({username: user.username, email: user.email}, security, {expiresIn: '12h'});
+                user.save(function (err) {
+                    if (err) {
+                        res.json({success: false, message: err});
+                    }
+                    else {
+                        var email = {
+                            //sometimes this email function is not working with MSN mail, but it works quite weill with gmail.
+                            from: 'noreply@easyschedule.com',
+                            to: user.email,
+                            subject: 'The request for reset your password',
+                            text: 'You have requested a reset password link. Please click on the link to reset your password: ' +
+                            '<a href="http://localhost:8000/reset/' + user.temporary + '">http://localhost:8000/reset/</a>',
+                            html: 'Dear ' + req.body.username + ', you have requested a reset password. Please click on the link to reset your password:<br>' +
+                            '<a href="http://localhost:8000/reset/' + user.temporary + '">Reset Password</a>'
+                        };
+
+                        client.sendMail(email, function (err, info) {
+                            if (err) {
+                                console.log(err);
+                            }
+                            else {
+                                console.log('Message sent: ' + info.response);
+                            }
+                        });
+                        res.json({
+                            success: true,
+                            message: 'A mail for password reset is sending to your email, please check it.'
+                        });
+                    }
+                });
+            }
+        });
+    });
+    //Check the token which is only for the users' email
+    router.get('/reset/:token', function (req, res) {
+        User.findOne({temporary: req.params.token}).select().exec(function (err, user) {
+            if (err) throw err;
+            var temporaryToken = req.params.token;
+            jwt.verify(temporaryToken, security, function (err, decoded) {
+                if (err) {
+                    res.json({success: false, message: 'The reset link has expired'});
+                } else {
+                    res.json({success: true, user: user});
+                }
+            });
+        });
+    });
+    //Update the password
+    router.put('/passwordupdate', function (req, res) {
+        User.findOne({username: res.body.username}).select().exec(function (err, user) {
+            if (err) throw err;
+            if (req.body.password != null && req.body.password != '') {
+                user.password = req.body.password;
+                user.temporary = false;
+                user.save(function (err) {
+                    if (err) {
+                        res.json({success: false, message: err});
+                    } else {
+                        res.json({success: true, message: 'Your password has been reset'})
+                    }
+                });
+            } else {
+                res.json({success: false, message: 'Please provide valid password'})
+            }
+
+        })
     });
     //this module is to filter the user who does not have a valid token, it will deny the access if the token is not given or invalid
     router.use(function (req, res, next) {
@@ -147,7 +236,7 @@ module.exports = function (router) {
             }
         });
 
-    })
+    });
 
 
     return router;

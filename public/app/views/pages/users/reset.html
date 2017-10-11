@@ -1,22 +1,22 @@
 <div class="page-header">User Login</div>
-<form ng-submit="main.doLogin(loginData);">
-    <label>Password:</label>
-    <input type="password" name="password" class="form-control" placeholder="please enter Password" ng-model="main.regData.password">
-    <a href="/reset" align = 'right'>Forgot your password?</a>
-    <br>
-    <button class="btn btn-primary" type="submit">Login</button>
+<form name="userForm" ng-submit="password.sendPassword(resetData, userForm.$valid);" novalidate>
+    <label>Username:</label>
+    <input class="form-control" type="text" name="username" placeholder="Enter username" ng-model="password.resetData.username" required>
+    <div>
+        <button class="btn btn-primary login-btn" type="submit">Submit</button>
+    </div>
 </form>
-<br />
+<br/>
 
-<div class="jumbotron text-center" ng-show="main.loading">
+<div class="jumbotron text-center" ng-show="password.loading">
     <span class="glyphicon glyphicon-repeat spinner"></span>
     <p>Loading</p>
 </div>
 
-<div class = "row show-hide-message" ng-show="main.successMsg">
-    <div class="alert alert-success">{{ main.successMsg}}</div>
+<div class="row show-hide-message" ng-show="password.success">
+    <div class="alert alert-success">{{ password.success}}</div>
 </div>
 
-<div class = "row show-hide-message" ng-show = "main.errorMsg">
-    <div class="alert alert-danger">{{main.errorMsg}}</div>
+<div class="row show-hide-message" ng-show="password.error">
+    <div class="alert alert-danger">{{password.error}}</div>
 </div>

@@ -21,9 +21,16 @@ angular.module('appRoutes', ['ngRoute'])
             .when('/admin', {
                 templateUrl: 'app/views/pages/users/admin.html'
             })
-			.when('/reset', {
-            templateUrl: 'app/views/pages/users/reset.html'
-        	})
+            .when('/resetpassword', {
+                templateUrl: 'app/views/pages/users/reset.html',
+                controller: 'passwordCtrl',
+                controllerAs:'password'
+            })
+            .when('/reset/:token', {
+                templateUrl: 'app/views/pages/users/newpass.html',
+                controller: 'resetController',
+                controllerAs:'reset'
+            })
             .when('/profile', {
                 templateUrl: 'app/views/pages/users/profile.html'
             })

@@ -25,4 +25,3 @@ angular.module('userControllers', ['userServices'])
 		};
 	});
 
-//router.post('/users', function(req, res){
