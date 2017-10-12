@@ -139,9 +139,22 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Assignment3Finalv2" />
+        <entry key="$PROJECT_DIR$" value="Assignment_3_masterup" />
       </map>
     </option>
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="AIP_Easy_Schedule" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
   </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
@@ -381,7 +394,7 @@
       <workItem from="1507636002571" duration="1783000" />
       <workItem from="1507637826070" duration="8725000" />
       <workItem from="1507741369968" duration="195000" />
-      <workItem from="1507758006867" duration="11284000" />
+      <workItem from="1507758006867" duration="11391000" />
     </task>
     <task id="LOCAL-00001" summary="Notification message">
       <created>1506955839276</created>
@@ -565,11 +578,18 @@
       <option name="project" value="LOCAL" />
       <updated>1507775633553</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Some adjust for this application">
+      <created>1507775656692</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1507775656692</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="195958000" />
+    <option name="totallyTimeSpent" value="196065000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
