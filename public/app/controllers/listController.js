@@ -8,7 +8,7 @@ angular.module('listController', [])
         function getApply() {
             Schedule.getApplies().then(function (data) {
                 app.applies = data.data;
-                 console.log(data.data);
+                // console.log(data.data);
             });
         }
 
@@ -29,7 +29,7 @@ angular.module('listController', [])
              if(data.data.success){
                  getApply();
              }else{
-                 console.log(data.data)
+                // console.log(data.data)
                  app.err = data.data.message;
              }
          })

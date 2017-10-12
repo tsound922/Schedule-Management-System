@@ -32,7 +32,7 @@ angular.module('adminController', [])
         app.deleteUser = function (username) {
             User.deleteUser(username).then(function (data) {
                 if (data.data.success) {
-                    console.log(data.data)
+                    //console.log(data.data)
                     getUsers();
                 } else {
                     app.err = data.data.message;
