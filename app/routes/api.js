@@ -11,8 +11,8 @@ module.exports = function (router) {
     //configuration of nodemailer-sendgrid
     var options = {
         auth: {
-            api_user: 'tsound922',
-            api_key: 'Wzy890922',
+            api_user: 'xxx',
+            api_key: 'xxx',
         }
     }
 
@@ -89,9 +89,9 @@ module.exports = function (router) {
                             to: user.email,
                             subject: 'The request for reset your password',
                             text: 'Here is you reset link ' +
-                            '<a href="https://aipeasyschedule.herokuapp.com/reset/' + user.temporary + '">Reset you password</a>',
+                            '<a href="https://localhost/reset/' + user.temporary + '">Reset you password</a>',
                             html: 'Dear ' + req.body.username + ', you have requested a reset password. Please click on the link to reset your password:<br>' +
-                            '<a href="https://https://aipeasyschedule.herokuapp.com/reset/' + user.temporary + '">Reset Password</a>'
+                            '<a href="https://localhost/reset/' + user.temporary + '">Reset Password</a>'
                         };
 
                         client.sendMail(email, function (err, info) {
