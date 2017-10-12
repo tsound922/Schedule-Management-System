@@ -55,4 +55,20 @@ if (condition) {<br>
 }
 
 ---------------------------------------------------------------------------------------------------------------------------------------
+Easy Schedule app
 =======
+Briefly description
+-------------------
+This application is going to provide a easy way to deal with the schedule arrangement for small shops. This application is built by using MEAN stack
+
+Before you start this application on your PC
+--------------
+You need to install the NPM, Nodejs, Express js and MongoDB.
+
+How to start
+-----------
+After you download or clone this application to your pc, you can run
+
+node server.js
+....
+
