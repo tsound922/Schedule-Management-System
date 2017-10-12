@@ -10,7 +10,7 @@ angular.module('adminController', [])
         //get all the users in user schema
         function getUsers() {
             User.getUsers().then(function (data) {
-                console.log(data)
+                //console.log(data)
                 app.users = data.data;
             });
         }
