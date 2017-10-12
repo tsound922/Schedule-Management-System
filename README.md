@@ -72,4 +72,34 @@ After you download or clone this application to your pc, you can run
 ```
 node server.js
 ```
+This file contain the configuration of server. To start the application on your browser, you should use localhost:8000 after you start the server. You may need a local mongoDB database
+
+Development Stack and Tool
+---------
+
+* Bootstrap - Front-end CSS framework
+* MongoDB   - Database service
+* Express   - Back-end framework
+* Angular   - Front-end and Back-end interactive 
+* Nodejs    - Back-end framework
+
+Authors:
+-----------------
+Zhenyu Wang
+Farhan Saeed
+Di PAN
+
+Reference:
+------------
+Haviv, A.Q. 2016, MEAN Web Development, Packt Publishing Ltd.
+
+Youtube, 'MEAN Stack application', viewed 19 August 2017, <https://www.youtube.com/playlist?list=PL3vQyqzqjZ637sWpKvniMCxdqZhnMJC1d> 
+
+Lynda, 'MEAN Stack and MongoDB: Development Techniques', viewed 23 September 2017, <https://www.lynda.com/Express-js-tutorials/What-MEAN-stack/440962/509019-4.html>
+
+Youtube, 'Nodejs tutorial for beginners', viewed 23 August 2017, <https://www.youtube.com/playlistlist=PL6gx4Cwl9DGBMdkKFn3HasZnnAqVjzHn_>
+
+Smidlein, W, 2014, 'Sending Email With Nodemailer and SendGrid', SendGrid, viewed 9 October 2017, <https://sendgrid.com/blog/sending-email-nodemailer-sendgrid/>, 
+
+
 
