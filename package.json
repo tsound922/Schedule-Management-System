@@ -1,33 +1,34 @@
 {
-  "name": "aip-blog",
+  "name": "meantutorial",
   "version": "1.0.0",
-  "description": "Easy schedule",
-  "main": "app.js",
+  "description": "mean stack application",
+  "main": "server.js",
   "scripts": {
-    "start": "node app.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tsound922/Assessment-3-preparation.git"
-  },
+  "keywords": [
+    "MEAN",
+    "stack",
+    "Nodejs"
+  ],
   "author": "Zhenyu Wang",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/tsound922/Assessment-3-preparation.git/issues"
-  },
-  "homepage": "https://github.com/tsound922/Assessment-3-preparation.git#readme",
   "dependencies": {
-    "bcryptjs": "^2.4.3",
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.2",
-    "connect-flash": "^0.1.1",
-    "express": "^4.16.1",
-    "express-handlebars": "^3.0.0",
-    "express-session": "^1.15.6",
-    "generate-password": "^1.3.0",
-    "method-override": "^2.3.10",
-    "mongoose": "^4.11.13",
-    "nodemailer": "^4.1.2",
+    "express": "^4.16.2",
+    "express-session": "^1.14.2",
+    "jsonwebtoken": "^7.1.9",
+    "mongoose": "^4.12.1",
+    "mongoose-title-case": "0.0.4",
+    "mongoose-validator": "^1.2.5",
+    "morgan": "^1.9.0",
+    "nodemailer": "^4.1.3",
     "nodemailer-sendgrid-transport": "^0.2.0",
-    "jsonwebtoken": "^7.1.9"
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1",
+    "passport-google-oauth": "^1.0.0",
+    "passport-twitter": "^1.0.4"
   }
 }
