@@ -11,8 +11,8 @@ module.exports = function (router) {
     //configuration of nodemailer-sendgrid
     var options = {
         auth: {
-            api_user: 'tsound922',
-            api_key: 'Wzy890922',
+            api_user: 'xxxx',
+            api_key: 'sdss',
         }
     }
 
