@@ -70,5 +70,5 @@ How to start
 After you download or clone this application to your pc, you can run
 
 node server.js
-....
+,,,
 
