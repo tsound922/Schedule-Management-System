@@ -88,10 +88,10 @@ module.exports = function (router) {
                             from: 'noreply@easyschedule.com',
                             to: user.email,
                             subject: 'The request for reset your password',
-                            text: 'You have requested a reset password link. Please click on the link to reset your password: ' +
-                            '<a href="http://localhost:8000/reset/' + user.temporary + '">http://localhost:8000/reset/</a>',
+                            text: 'Here is you reset link ' +
+                            '<a href="https://rocky-anchorage-38011.herokuapp.com/reset/' + user.temporary + '">Reset you password</a>',
                             html: 'Dear ' + req.body.username + ', you have requested a reset password. Please click on the link to reset your password:<br>' +
-                            '<a href="http://localhost:8000/reset/' + user.temporary + '">Reset Password</a>'
+                            '<a href="https://rocky-anchorage-38011.herokuapp.com/reset/' + user.temporary + '">Reset Password</a>'
                         };
 
                         client.sendMail(email, function (err, info) {
