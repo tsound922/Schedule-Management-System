@@ -114,7 +114,7 @@ module.exports = function (router) {
     //Check the token which is only for the users' email
     router.get('/reset/:token', function (req, res) {
         User.findOne({temporary: req.params.token}).select().exec(function (err, user) {
-            if (err) throw err;
+            if (err) console.log(err);
             var temporaryToken = req.params.token;
             jwt.verify(temporaryToken, security, function (err, decoded) {
                 if (err) {

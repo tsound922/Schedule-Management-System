@@ -10,7 +10,6 @@ angular.module('resetCtrl', ['userServices'])
                     app.loading = false;
 
                     if (data.data.success) {
-                        // console.log(data)
                         app.success = data.data.message;
                         //If the mail is send to users successfully, it will redirect to login page after 2 seconds
                         $timeout(function () {

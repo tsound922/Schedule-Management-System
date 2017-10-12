@@ -14,7 +14,7 @@ angular.module('scheduleCtrl',['scheduleService'])
                 app.successMsg = data.data.message + '......Updating and redirecting';
                 //Redirect to home page
                 $timeout(function () {
-                    $location.path('/');
+                    $location.path('/home');
                 }, 2000);
 
             } else {
