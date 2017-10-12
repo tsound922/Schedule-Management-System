@@ -85,9 +85,9 @@ Development Stack and Tool
 
 Authors:
 -----------------
-Zhenyu Wang
-Farhan Saeed
-Di PAN
+Zhenyu Wang<br>
+Farhan Saeed<br>
+Di PAN<br>
 
 Reference:
 ------------
