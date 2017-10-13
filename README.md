@@ -85,9 +85,9 @@ Development Stack and Tool
 
 Authors:
 -----------------
-Zhenyu Wang<br>
-Farhan Saeed<br>
-Di PAN<br>
+Zhenyu Wang, github id：tsound922<br>
+Farhan Saeed, github id: farhanz2009 <br>
+Di PAN, github id: aeroidian<br>
 
 Reference & Acknowledgement:
 ------------
