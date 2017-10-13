@@ -89,7 +89,7 @@ Zhenyu Wang<br>
 Farhan Saeed<br>
 Di PAN<br>
 
-Reference　& Acknowledgement:
+Reference & Acknowledgement:
 ------------
 Haviv, A.Q. 2016, MEAN Web Development, Packt Publishing Ltd.
 
